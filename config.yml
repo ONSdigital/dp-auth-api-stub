@@ -1,19 +1,34 @@
 identities:
-  - scenario: "unauthorized service and user"
-    response-status: 401
-    message: "not authenticated"
   - scenario: "authorized service: dataset-api, no user"
     authorization-token: "939616dc-7599-4ded-9a86-a9c66fbf98e0"
     x-florence-token: ""
     identifier: "dataset-api"
     response-status: 200
+
   - scenario: "authorized service: dataset-api, authorized user"
     authorization-token: "939616dc-7599-4ded-9a86-a9c66fbf98e0"
     x-florence-token: "85c718c3-9ba4-4f31-99bb-3e4eaabb2cc1"
     identifier: "rickSanchez@theCitadelOfRicks.com"
     response-status: 200
+
+  - scenario: "unauthorized service and user"
+    message: "not authenticated"
+    response-status: 401
+
   - scenario: "authorized service: dataset-api, unauthorized user"
     authorization-token: "939616dc-7599-4ded-9a86-a9c66fbf98e0"
     x-florence-token: "043a90de-a5b9-42b1-9af4-ad865dda1405"
     message: "not authenticated"
     response-status: 401
+
+  - scenario: "service token only, internal server error"
+    authorization-token: "58a37231-d534-4f63-b013-25b2f5d59c1a"
+    x-florence-token: ""
+    message: "internal server error"
+    response-status: 500
+
+  - scenario: "service and user token, internal server error"
+    authorization-token: "58a37231-d534-4f63-b013-25b2f5d59c1a"
+    x-florence-token: "2741ac66-2d65-4112-a314-a613123f4677"
+    message: "internal server error"
+    response-status: 500
