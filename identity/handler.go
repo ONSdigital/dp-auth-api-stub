@@ -27,7 +27,7 @@ type identityProfile struct {
 	Identifier         string `yaml:"identifier,omitempty"`
 	Status             int    `yaml:"response-status,omitempty"`
 	Message            string `yaml:"message,omitempty"`
-	Description        string `yaml:"description,omitempty"`
+	Scenario           string `yaml:"scenario,omitempty"`
 }
 
 type identityProfiles struct {
@@ -58,7 +58,8 @@ func (s *Stub) Handle(w http.ResponseWriter, r *http.Request) {
 
 	for _, identity := range s.profiles.List {
 		if identity.AuthorizationToken == authToken {
-			log.Info(identity.Description, log.Data{"status": identity.Status})
+			log.Info(identity.Scenario, log.Data{"status": identity.Status})
+
 			b, _ := json.Marshal(response{Identifier: identity.Identifier, Message: identity.Message})
 			w.WriteHeader(identity.Status)
 			w.Write(b)
@@ -70,5 +71,4 @@ func (s *Stub) Handle(w http.ResponseWriter, r *http.Request) {
 	b, _ := json.Marshal(response{Message: "not authenticated"})
 	w.WriteHeader(401)
 	w.Write(b)
-
 }

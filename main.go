@@ -14,6 +14,7 @@ import (
 )
 
 func main() {
+	log.HumanReadable = true
 	log.Namespace = "dp-auth-api-stub"
 
 	signals := make(chan os.Signal, 1)
@@ -38,19 +39,22 @@ func main() {
 		}
 	}()
 
+	shutdown := func() {
+		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
+		if err := httpServer.Shutdown(ctx); err != nil {
+			log.ErrorC("graceful shutdown failed", err, nil)
+		} else {
+			log.ErrorC("graceful shutdown completed without error", err, nil)
+		}
+	}
+
 	select {
 	case err := <-errorChan:
 		log.ErrorC("application error encountered, commencing graceful shutdown", err, nil)
-		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
-		if err := httpServer.Shutdown(ctx); err != nil {
-			log.ErrorC("graceful shutdown failed", err, nil)
-		}
+		shutdown()
 	case sig := <-signals:
 		log.Info("received os signal, commencing graceful shutting down", log.Data{"signal": sig.String()})
-		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
-		if err := httpServer.Shutdown(ctx); err != nil {
-			log.ErrorC("graceful shutdown failed", err, nil)
-		}
+		shutdown()
 	}
 
 }

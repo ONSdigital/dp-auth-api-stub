@@ -3,6 +3,13 @@ dp-auth-api-stub
 
 Remember to update the [README](README.md) and [CHANGELOG](CHANGELOG.md) files.
 
+
+
+| Authorization header | Scenario | Response Status | Response Body |
+| ---------------------|:--------:| ---------------:| :-------------
+| empty                | No auth token header provided, returning unauthenticated response | 401 | ```{"message":"not authenticated"}``` |
+
+
 ### Configuration
 
 An overview of the configuration options available, either as a table of

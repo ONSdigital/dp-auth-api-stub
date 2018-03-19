@@ -1,12 +1,12 @@
 identities:
-  - description: "no auth token header provided, returning unauthenticated response"
+  - scenario: "no auth token header provided, returning unauthenticated response"
     response-status: 401
     message: "not authenticated"
-  - description: "service identity confirmed as dataset api"
+  - scenario: "service identity confirmed as dataset api"
     authorization-token: "939616dc-7599-4ded-9a86-a9c66fbf98e0"
     identifier: "dataset-api"
     response-status: 200
-  - description: "user confirmed as Rick Sanchez"
+  - scenario: "user confirmed as Rick Sanchez"
     authorization-token: "61a11670-f7ed-4c20-90e2-a36367ad9119"
     identifier: "rickSanchez@theCitadelOfRicks.com"
     response-status: 200
