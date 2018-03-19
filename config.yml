@@ -32,3 +32,9 @@ identities:
     x-florence-token: "2741ac66-2d65-4112-a314-a613123f4677"
     message: "internal server error"
     response-status: 500
+
+  - scenario: "unauthorized service: dataset-api"
+    authorization-token: "0dd023bd-9cc0-4c18-9b4f-e030a1f2b71c"
+    x-florence-token: ""
+    message: "not authenticated"
+    response-status: 401
