@@ -49,22 +49,19 @@ func main() {
 		}
 	}()
 
-	shutdown := func() {
-		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
-		if err := httpServer.Shutdown(ctx); err != nil {
-			log.ErrorC("graceful shutdown failed", err, nil)
-		} else {
-			log.Info("graceful shutdown completed without error", nil)
-		}
-	}
-
+	// wait until fatal event
 	select {
 	case err := <-errorChan:
 		log.ErrorC("application error encountered, commencing graceful shutdown", err, nil)
-		shutdown()
 	case sig := <-signals:
 		log.Info("received os signal, commencing graceful shutting down", log.Data{"signal": sig.String()})
-		shutdown()
 	}
 
+	// shutdown
+	ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
+	if err := httpServer.Shutdown(ctx); err != nil {
+		log.ErrorC("graceful shutdown failed", err, nil)
+	} else {
+		log.Info("graceful shutdown completed without error", nil)
+	}
 }
