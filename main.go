@@ -1,16 +1,18 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
+	"context"
 	"net/http"
-	"github.com/ONSdigital/go-ns/log"
-	"github.com/ONSdigital/go-ns/server"
 	"os"
 	"os/signal"
 	"syscall"
-	"context"
 	"time"
+
+	"github.com/ONSdigital/dp-auth-api-stub/config"
 	"github.com/ONSdigital/dp-auth-api-stub/identity"
+	"github.com/ONSdigital/go-ns/log"
+	"github.com/ONSdigital/go-ns/server"
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -21,6 +23,14 @@ func main() {
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
 	errorChan := make(chan error, 1)
 
+	cfg, err := config.Get()
+	if err != nil {
+		log.Error(err, nil)
+		os.Exit(1)
+	}
+
+	log.Info("config on startup", log.Data{"config": cfg})
+
 	stub, err := identity.NewStub()
 	if err != nil {
 		log.ErrorC("failed to create stub, exiting", err, nil)
@@ -30,7 +40,7 @@ func main() {
 	router := mux.NewRouter()
 	router.Path("/identity").Methods(http.MethodGet).HandlerFunc(stub.Handle)
 
-	httpServer := server.New(":8082", router)
+	httpServer := server.New(cfg.BindAddr, router)
 
 	go func() {
 		log.Info("starting http server", nil)
