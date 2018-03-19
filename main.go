@@ -10,7 +10,7 @@ import (
 	"syscall"
 	"context"
 	"time"
-	"github.com/ONSdigital/dp-auth-api-stub/identity"
+	"github.com/ONSdigital/dp-auth-api-stub/handler"
 )
 
 func main() {
@@ -21,14 +21,15 @@ func main() {
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
 	errorChan := make(chan error, 1)
 
-	stub, err := identity.NewStub()
+	apiStub, err := handler.NewAPIStub()
 	if err != nil {
-		log.ErrorC("failed to create stub, exiting", err, nil)
+		log.ErrorC("failed to create apiStub, exiting", err, nil)
 		os.Exit(1)
 	}
 
 	router := mux.NewRouter()
-	router.Path("/identity").Methods(http.MethodGet).HandlerFunc(stub.Handle)
+	router.Path("/identity").Methods(http.MethodGet).HandlerFunc(apiStub.Identify)
+	router.Path("/service").Methods(http.MethodPost).HandlerFunc(apiStub.CreateServiceAccount)
 
 	httpServer := server.New(":8082", router)
 
