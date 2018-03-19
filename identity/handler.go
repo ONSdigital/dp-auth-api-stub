@@ -24,6 +24,7 @@ type response struct {
 
 type identityProfile struct {
 	AuthorizationToken string `yaml:"authorization-token,omitempty"`
+	XFlorenceToken     string `yaml:"x-florence-token,omitempty"`
 	Identifier         string `yaml:"identifier,omitempty"`
 	Status             int    `yaml:"response-status,omitempty"`
 	Message            string `yaml:"message,omitempty"`
@@ -48,17 +49,18 @@ func NewStub() (*Stub, error) {
 	}
 
 	b, _ := json.MarshalIndent(profiles, "", " ")
-	log.Debug("loaded identities config", log.Data{"config": string(b)})
+	log.Debug(string(b), nil)
 
 	return &Stub{profiles: profiles}, nil
 }
 
 func (s *Stub) Handle(w http.ResponseWriter, r *http.Request) {
 	authToken := r.Header.Get(authHeaderKey)
+	xFlorenceToken := r.Header.Get(userAuthHeaderKey)
 
 	for _, identity := range s.profiles.List {
-		if identity.AuthorizationToken == authToken {
-			log.Info(identity.Scenario, log.Data{"status": identity.Status})
+		if identity.AuthorizationToken == authToken && identity.XFlorenceToken == xFlorenceToken {
+			log.Info("identity profile match", log.Data{"scenario": identity.Scenario, "status": identity.Status})
 
 			b, _ := json.Marshal(response{Identifier: identity.Identifier, Message: identity.Message})
 			w.WriteHeader(identity.Status)

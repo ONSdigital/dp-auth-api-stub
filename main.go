@@ -44,7 +44,7 @@ func main() {
 		if err := httpServer.Shutdown(ctx); err != nil {
 			log.ErrorC("graceful shutdown failed", err, nil)
 		} else {
-			log.ErrorC("graceful shutdown completed without error", err, nil)
+			log.Info("graceful shutdown completed without error", nil)
 		}
 	}
 
