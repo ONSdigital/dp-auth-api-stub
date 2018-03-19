@@ -5,9 +5,11 @@ Remember to update the [README](README.md) and [CHANGELOG](CHANGELOG.md) files.
 
 
 
-| Authorization header | Scenario | Response Status | Response Body |
-| ---------------------|:--------:| ---------------:| :-------------
-| empty                | No auth token header provided, returning unauthenticated response | 401 | ```{"message":"not authenticated"}``` |
+| Authorization header | Profile | Status | Response Body |
+| ---------------------|:--------:| ------:| :-------------
+| empty                | No auth token header provided | 401 | `{"message":"not authenticated"}` |
+| 939616dc-7599-4ded-9a86-a9c66fbf98e0 | dataset api | 200 | `{"identifier":"dataset-api"}` |
+| 61a11670-f7ed-4c20-90e2-a36367ad9119 | valid user | 200 | `{"identifier":"rickSanchez@theCitadelOfRicks.com"}` |
 
 
 ### Configuration
