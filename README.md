@@ -14,13 +14,17 @@ To create a new service account send the following request body with the valid s
 #### Valid service account names
 - dataset-api
 
+### Create service account response examples
+
+***Successfully requests will always return the same token value***
+
 | Request Body | Description | Status | Response Body |
 | -------------| ----------- | ------ | --------------| 
 | `{"name":"dataset-api"}` | successfully create new service account | 201 | `{"name":"dataset-api","token":"939616dc-7599-4ded-9a86-a9c66fbf98e0"}` |
 | `{"name":""}` | no service name in request body | 400 | `{"message":"bad request"}` |
 | `{"name":"Morty Smith"}` | service name is not in the list of valid options | 500 | `{"message":"internal server error"}` |
 
-### Get Identity responses
+### Get Identity response examples
 
 | Authorization header | X-Florence-Token | Profile | Status | Response Body |
 | ---------------------|----------------- | --------| -------| --------------| 
