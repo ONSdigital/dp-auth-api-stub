@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"errors"
 	"io/ioutil"
 	"net/http"
 
@@ -19,10 +18,14 @@ var (
 	unauthorizedError  = Response{Message: "not authenticated", Status: 401}
 )
 
+// APIStub represents an object containing a list of possible
+// scenarios and the respective outcomes
 type APIStub struct {
 	scenarios Scenarios
 }
 
+// NewAPIStub represents a stubbed version of zebedee
+// for authenticating a user or service
 func NewAPIStub() (*APIStub, error) {
 	source, err := ioutil.ReadFile("config.yml")
 	if err != nil {
@@ -31,14 +34,15 @@ func NewAPIStub() (*APIStub, error) {
 	}
 
 	var scenarios Scenarios
-	if err := yaml.Unmarshal(source, &scenarios); err != nil {
-		log.ErrorC("error attempting to marshal config.yml", err, nil)
+	if err = yaml.Unmarshal(source, &scenarios); err != nil {
+		log.ErrorC("error attempting to unmarshal config.yml", err, nil)
 		return nil, err
 	}
 
 	b, err := json.MarshalIndent(scenarios, "", " ")
 	if err != nil {
-		return nil, errors.New("failed to marshal config to json")
+		log.ErrorC("failed to marshal config to json", err, nil)
+		return nil, err
 	}
 
 	log.Debug("stub Response configuration", log.Data{"config": string(b)})
@@ -46,6 +50,8 @@ func NewAPIStub() (*APIStub, error) {
 	return &APIStub{scenarios: scenarios}, nil
 }
 
+// Identify represents a stubbed version of authenticating a service or user based
+// on the scenario the request matches
 func (api *APIStub) Identify(w http.ResponseWriter, r *http.Request) {
 	authToken := r.Header.Get(authHeaderKey)
 	xFlorenceToken := r.Header.Get(userAuthHeaderKey)
@@ -71,6 +77,7 @@ func (api *APIStub) Identify(w http.ResponseWriter, r *http.Request) {
 	writeResponse(unauthorizedError, w)
 }
 
+// CreateServiceAccount mocks the response for creating a cervice account
 func (api *APIStub) CreateServiceAccount(w http.ResponseWriter, r *http.Request) {
 	log.Info("create service account", nil)
 
