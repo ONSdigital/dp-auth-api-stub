@@ -1,12 +1,13 @@
 package handler
 
 import (
-	"net/http"
 	"encoding/json"
-	"github.com/ONSdigital/go-ns/log"
-	"io/ioutil"
-	"gopkg.in/yaml.v2"
 	"errors"
+	"io/ioutil"
+	"net/http"
+
+	"github.com/ONSdigital/go-ns/log"
+	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -48,6 +49,7 @@ func NewAPIStub() (*APIStub, error) {
 func (api *APIStub) Identify(w http.ResponseWriter, r *http.Request) {
 	authToken := r.Header.Get(authHeaderKey)
 	xFlorenceToken := r.Header.Get(userAuthHeaderKey)
+	log.Info("headers", log.Data{"auth_token": authToken, "florence_token": xFlorenceToken})
 
 	for _, identity := range api.scenarios.Identities {
 		if identity.AuthorizationToken == authToken && identity.XFlorenceToken == xFlorenceToken {

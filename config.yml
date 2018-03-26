@@ -16,6 +16,12 @@ identities:
     identifier: "rickSanchez@theCitadelOfRicks.com"
     response-status: 200
 
+  - scenario: "authorized service and authorized user"
+    authorization-token: ""
+    x-florence-token: "85c718c3-9ba4-4f31-99bb-3e4eaabb2cc1"
+    identifier: "rickSanchez@theCitadelOfRicks.com"
+    response-status: 200
+
   - scenario: "unauthorized service and user"
     message: "not authenticated"
     response-status: 401
@@ -38,6 +44,57 @@ identities:
     message: "internal server error"
     response-status: 500
 
+# Import services with their defult auth tokens set
+  - scenario: "authorized import api and no user"
+    authorization-token: "0C30662F-6CF6-43B0-A96A-954772267FF5"
+    x-florence-token: ""
+    identifier: "import-api"
+    response-status: 200
+
+  - scenario: "authorized dimension extractor and no user"
+    authorization-token: "E45F9BFC-3854-46AE-8187-11326A4E00F4"
+    x-florence-token: ""
+    identifier: "dimension-extractor"
+    response-status: 200
+
+  - scenario: "authorized dimension importer and no user"
+    authorization-token: "4424A9F2-B903-40F4-85F1-240107D1AFAF"
+    x-florence-token: ""
+    identifier: "dimension-importer"
+    response-status: 200
+
+  - scenario: "authorized import reporter and no user"
+    authorization-token: "1D6C47C1-8F42-4F64-9AB4-6E5A16F89607"
+    x-florence-token: ""
+    identifier: "import-reporter"
+    response-status: 200
+
+  - scenario: "authorized import tracker and no user"
+    authorization-token: "AB0A5CFA-3C55-4FA8-AACC-F98039BED0AC"
+    x-florence-token: ""
+    identifier: "import-tracker"
+    response-status: 200
+
+  - scenario: "authorized observation importer and no user"
+    authorization-token: "AA78C45F-DD64-4631-BED9-FEAE29200620"
+    x-florence-token: ""
+    identifier: "observation-importer"
+    response-status: 200
+
 services:
   - "dataset-api"
+  - "import-api"
+  - "filter-api"
+  - "recipe-api"
+  - "search-api"
+  - "codelist-api"
+  - "hierarchy-api"
+  - "dimension-extractor"
+  - "dimension-importer"
+  - "observation-importer"
+  - "import-reporter"
+  - "import-tracker"
+  - "dataset-exporter"
+  - "dataset-exporter-xlsx"
+  - "downloads-service"
 new-service-token: *auth-token-01
