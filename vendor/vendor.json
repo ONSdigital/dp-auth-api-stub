@@ -1,0 +1,63 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "J9OiPnhPHFPhQ+R+dq6LFj+dTxE=",
+			"path": "github.com/ONSdigital/go-ns/handlers/requestID",
+			"revision": "779d639e4a0c116b62484d10275cffb4940ee804",
+			"revisionTime": "2018-03-22T11:27:23Z"
+		},
+		{
+			"checksumSHA1": "7DeVPN/PW8oj0H7q/00MqhBkZzo=",
+			"path": "github.com/ONSdigital/go-ns/log",
+			"revision": "779d639e4a0c116b62484d10275cffb4940ee804",
+			"revisionTime": "2018-03-22T11:27:23Z"
+		},
+		{
+			"checksumSHA1": "GQdzMpAMb42KQQ/GsJFSRU5dj1Y=",
+			"path": "github.com/ONSdigital/go-ns/server",
+			"revision": "779d639e4a0c116b62484d10275cffb4940ee804",
+			"revisionTime": "2018-03-22T11:27:23Z"
+		},
+		{
+			"checksumSHA1": "g/V4qrXjUGG9B+e3hB+4NAYJ5Gs=",
+			"path": "github.com/gorilla/context",
+			"revision": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42",
+			"revisionTime": "2016-08-17T18:46:32Z"
+		},
+		{
+			"checksumSHA1": "hIbmXmNbwyP44fi1hh6zJrMcYws=",
+			"path": "github.com/gorilla/mux",
+			"revision": "ac112f7d75a0714af1bd86ab17749b31f7809640",
+			"revisionTime": "2017-07-03T15:07:09Z"
+		},
+		{
+			"checksumSHA1": "OBvAHqWjdI4NQVAqTkcQAdTuCFY=",
+			"origin": "github.com/ONSdigital/go-ns/vendor/github.com/justinas/alice",
+			"path": "github.com/justinas/alice",
+			"revision": "779d639e4a0c116b62484d10275cffb4940ee804",
+			"revisionTime": "2018-03-22T11:27:23Z"
+		},
+		{
+			"checksumSHA1": "Jrjxy16tD9mUgr/jbhXwbHVeSa0=",
+			"path": "github.com/kelseyhightower/envconfig",
+			"revision": "462fda1f11d8cad3660e52737b8beefd27acfb3f",
+			"revisionTime": "2017-09-18T16:15:10Z"
+		},
+		{
+			"checksumSHA1": "hBgLmZ/4mCxmnH88mqFKBkpJFUY=",
+			"origin": "github.com/ONSdigital/go-ns/vendor/github.com/mgutz/ansi",
+			"path": "github.com/mgutz/ansi",
+			"revision": "779d639e4a0c116b62484d10275cffb4940ee804",
+			"revisionTime": "2018-03-22T11:27:23Z"
+		},
+		{
+			"checksumSHA1": "RDJpJQwkF012L6m/2BJizyOksNw=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "eb3733d160e74a9c7e442f435eb3bea458e1d19f",
+			"revisionTime": "2017-08-12T16:00:11Z"
+		}
+	],
+	"rootPath": "github.com/ONSdigital/dp-auth-api-stub"
+}
