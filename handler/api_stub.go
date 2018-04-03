@@ -118,6 +118,7 @@ func (api *APIStub) CreateServiceAccount(w http.ResponseWriter, r *http.Request)
 
 func writeResponse(r Response, w http.ResponseWriter) {
 	b, _ := json.Marshal(r)
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(r.Status)
 	w.Write(b)
 }
