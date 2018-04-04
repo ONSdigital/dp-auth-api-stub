@@ -58,39 +58,57 @@ identities:
 
 # Import services with their defult auth tokens set
   - scenario: "authorized import api and no user"
-    authorization-token: "0C30662F-6CF6-43B0-A96A-954772267FF5"
+    authorization-token: "Bearer 0C30662F-6CF6-43B0-A96A-954772267FF5"
     x-florence-token: ""
     identifier: "import-api"
     response-status: 200
 
   - scenario: "authorized dimension extractor and no user"
-    authorization-token: "E45F9BFC-3854-46AE-8187-11326A4E00F4"
+    authorization-token: "Bearer E45F9BFC-3854-46AE-8187-11326A4E00F4"
     x-florence-token: ""
     identifier: "dimension-extractor"
     response-status: 200
 
   - scenario: "authorized dimension importer and no user"
-    authorization-token: "4424A9F2-B903-40F4-85F1-240107D1AFAF"
+    authorization-token: "Bearer 4424A9F2-B903-40F4-85F1-240107D1AFAF"
     x-florence-token: ""
     identifier: "dimension-importer"
     response-status: 200
 
   - scenario: "authorized import reporter and no user"
-    authorization-token: "1D6C47C1-8F42-4F64-9AB4-6E5A16F89607"
+    authorization-token: "Bearer 1D6C47C1-8F42-4F64-9AB4-6E5A16F89607"
     x-florence-token: ""
     identifier: "import-reporter"
     response-status: 200
 
   - scenario: "authorized import tracker and no user"
-    authorization-token: "AB0A5CFA-3C55-4FA8-AACC-F98039BED0AC"
+    authorization-token: "Bearer AB0A5CFA-3C55-4FA8-AACC-F98039BED0AC"
     x-florence-token: ""
     identifier: "import-tracker"
     response-status: 200
 
   - scenario: "authorized observation importer and no user"
-    authorization-token: "AA78C45F-DD64-4631-BED9-FEAE29200620"
+    authorization-token: "Bearer AA78C45F-DD64-4631-BED9-FEAE29200620"
     x-florence-token: ""
     identifier: "observation-importer"
+    response-status: 200
+
+  - scenario: "authorized dataset exporter (csv) and no user"
+    authorization-token: "Bearer 0f49d57b-c551-4d33-af1e-a442801dd851"
+    x-florence-token: ""
+    identifier: "dataset-exporter"
+    response-status: 200
+
+  - scenario: "authorized dataset exporter xlsx and no user"
+    authorization-token: "Bearer 7049050e-5d55-440d-b461-319f8cdf6670"
+    x-florence-token: ""
+    identifier: "dataset-exporter-xlsx"
+    response-status: 200
+
+  - scenario: "authorized downloads service and no user"
+    authorization-token: "Bearer c60198e9-1864-4b68-ad0b-1e858e5b46a4"
+    x-florence-token: ""
+    identifier: "download-service"
     response-status: 200
 
 services:
