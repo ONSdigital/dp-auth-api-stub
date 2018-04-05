@@ -123,6 +123,12 @@ identities:
     identifier: "download-service"
     response-status: 200
 
+  - scenario: "authorized zebedee and no user"
+    authorization-token: "Bearer 15C0E4EE-777F-4C61-8CDB-2898CEB34657"
+    x-florence-token: ""
+    identifier: "zebedee"
+    response-status: 200
+
 services:
   - "dataset-api"
   - "import-api"
@@ -139,4 +145,5 @@ services:
   - "dataset-exporter"
   - "dataset-exporter-xlsx"
   - "downloads-service"
+  - "zebedee"
 new-service-token: *auth-token-01
