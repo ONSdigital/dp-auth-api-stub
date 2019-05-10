@@ -57,6 +57,8 @@ func (api *APIStub) Identify(w http.ResponseWriter, r *http.Request) {
 	xFlorenceToken := r.Header.Get(userAuthHeaderKey)
 	log.Info("headers", log.Data{"auth_token": authToken, "florence_token": xFlorenceToken})
 
+	log.Info("all headers", log.Data{"headers": r.Header})
+
 	for _, identity := range api.scenarios.Identities {
 		if identity.AuthorizationToken == authToken && identity.XFlorenceToken == xFlorenceToken {
 			log.Info("identity profile match", log.Data{
