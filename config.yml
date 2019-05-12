@@ -118,32 +118,20 @@ identities:
     response-status: 200
 
   - scenario: "authorized downloads service and no user"
-    authorization-token: "Bearer c60198e9-1864-4b68-ad0b-1e858e5b46a4"
+    authorization-token: "Bearer 0dd023bd-9cc0-4c18-9b4f-e030a1f2b71c"
     x-florence-token: ""
     identifier: "download-service"
     response-status: 200
 
-  - scenario: "authorised dataset-api no user"
-    authorization-token: "Bearer 3252e9fa21bedfa7c955a504eaec9a930027637ce99464796257d1e37b009ccf"
+  - scenario: "authorized dataet api and no user"
+    authorization-token: "Bearer c60198e9-1864-4b68-ad0b-1e858e5b46a4"
     x-florence-token: ""
     identifier: "dataset-api"
     response-status: 200
 
-  - scenario: "authorised import-api no user"
-    authorization-token: "Bearer 3252e9fa21bedfa7c955a504eaec9a930027637ce99464796257d1e37b009ccf"
-    x-florence-token: ""
-    identifier: "import-api"
-    response-status: 200
-
-  - scenario: "authorised search-api no user"
-    authorization-token: "Bearer 3252e9fa21bedfa7c955a504eaec9a930027637ce99464796257d1e37b009ccf"
-    x-florence-token: ""
-    identifier: "search-api"
-    response-status: 200
-
 services:
   - "dataset-api"
-  #- "import-api"
+  - "import-api"
   - "filter-api"
   - "recipe-api"
   - "search-api"
