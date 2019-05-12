@@ -1,5 +1,5 @@
 valid-service-token: &auth-token-01
-  "3252e9fa21bedfa7c955a504eaec9a930027637ce99464796257d1e37b009ccf"
+  "939616dc-7599-4ded-9a86-a9c66fbf98e0"
 internal-server-error-token: &auth-token-02
   "58a37231-d534-4f63-b013-25b2f5d59c1a"
 
@@ -123,10 +123,16 @@ identities:
     identifier: "download-service"
     response-status: 200
 
-  - scenario: "authorized dataet api and no user"
+  - scenario: "authorized dataset api and no user"
     authorization-token: "Bearer c60198e9-1864-4b68-ad0b-1e858e5b46a4"
     x-florence-token: ""
     identifier: "dataset-api"
+    response-status: 200
+
+  - scenario: "authorized code list api and no user"
+    authorization-token: "Bearer 939616dc-7599-4ded-9a86-a9c66fbf98e0"
+    x-florence-token: ""
+    identifier: "code-list-api"
     response-status: 200
 
 services:
